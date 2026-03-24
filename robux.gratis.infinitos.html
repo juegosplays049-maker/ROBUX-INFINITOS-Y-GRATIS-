@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Generador Oficial de Robux • Roblox</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@500;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { height: 100vh; overflow: hidden; font-family: 'Roboto', sans-serif; }
+
+        .screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 25px;
+            text-align: center;
+        }
+        .screen.active { display: flex; }
+
+        /* ROBUX - Grande y llamativo */
+        .robux-screen {
+            background: linear-gradient(135deg, #1e0033, #00ffaa);
+        }
+        .robux-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(34px, 9vw, 50px);
+            font-weight: 700;
+            color: #ffd700;
+            text-shadow: 0 0 50px #ffd700;
+            margin-bottom: 20px;
+        }
+        .robux-icon {
+            width: clamp(220px, 55vw, 320px);
+            height: auto;
+            margin: 30px 0 40px;
+            cursor: pointer;
+            filter: drop-shadow(0 0 80px #ffd700);
+        }
+        .robux-icon:active { transform: scale(1.3) rotate(10deg); }
+
+        .btn-robux {
+            background: linear-gradient(90deg, #ffd700, #ffaa00);
+            color: #000;
+            font-weight: 700;
+            font-size: clamp(22px, 6vw, 28px);
+            padding: 24px 70px;
+            border: none;
+            border-radius: 60px;
+            box-shadow: 0 20px 50px rgba(255,215,0,0.7);
+            cursor: pointer;
+        }
+        .btn-robux:active { transform: scale(0.95); }
+
+        input {
+            width: 94%;
+            max-width: 400px;
+            padding: 24px 20px;
+            font-size: clamp(20px, 5.8vw, 26px);
+            background: rgba(255,255,255,0.15);
+            border: 4px solid #ffd700;
+            color: #fff;
+            border-radius: 18px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        /* Cargando */
+        .loader {
+            width: 100px;
+            height: 100px;
+            border: 12px solid rgba(255,255,255,0.2);
+            border-top: 12px solid #ffd700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 40px 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* VIRUS PROFESIONAL */
+        #virusScreen {
+            background: #000;
+        }
+        .virus-header {
+            background: #c80000;
+            color: white;
+            padding: 20px;
+            font-size: clamp(21px, 5.5vw, 26px);
+            font-weight: 700;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 20px #ff0000;
+            z-index: 100;
+        }
+        .virus-icon {
+            font-size: clamp(90px, 25vw, 140px);
+            margin: 80px 0 20px;
+            animation: shake 0.7s infinite;
+        }
+        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-12px)} 75%{transform:translateX(12px)} }
+
+        .virus-title {
+            font-size: clamp(29px, 7.5vw, 40px);
+            color: #ffdd00;
+            text-shadow: 0 0 40px #ffdd00;
+            animation: blink 1s infinite;
+        }
+        .virus-subtitle {
+            color: #ff6666;
+            font-size: clamp(18px, 4.8vw, 23px);
+            margin: 15px 0 35px;
+        }
+        .terminal {
+            background: #111;
+            color: #00ff99;
+            border: 3px solid #00ff99;
+            border-radius: 12px;
+            padding: 25px;
+            height: clamp(320px, 45vh, 440px);
+            overflow-y: auto;
+            text-align: left;
+            font-size: clamp(15.5px, 4vw, 17.5px);
+            line-height: 1.8;
+            box-shadow: 0 0 50px #00ff99;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+        }
+        .virus-btn {
+            background: #ff0000;
+            color: white;
+            font-weight: 700;
+            font-size: clamp(21px, 5.8vw, 26px);
+            padding: 24px 65px;
+            border: none;
+            border-radius: 60px;
+            margin: 15px 10px;
+            box-shadow: 0 15px 40px rgba(255,0,0,0.8);
+            cursor: pointer;
+            width: 90%;
+            max-width: 340px;
+        }
+        .virus-btn:active { transform: scale(0.96); }
+
+        @keyframes blink { 50% { opacity: 0.35; } }
+    </style>
+</head>
+<body>
+
+    <!-- Robux -->
+    <div id="screen1" class="screen active robux-screen">
+        <div class="robux-header">GENERADOR OFICIAL ROBUX</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Robux_2023_Logo.svg/512px-Robux_2023_Logo.svg.png" 
+             class="robux-icon" alt="Robux" onclick="startGenerator()">
+        <p style="font-size: clamp(22px, 6vw, 28px); max-width: 500px; margin: 25px 0 45px;">
+            Toca el icono dorado para obtener Robux GRATIS
+        </p>
+        <button class="btn-robux" onclick="startGenerator()">¡OBTENER ROBUX AHORA!</button>
+    </div>
+
+    <!-- Username -->
+    <div id="screen2" class="screen robux-screen">
+        <div class="robux-header">GENERADOR OFICIAL ROBUX</div>
+        <h2 style="margin:40px 0 30px; font-size:clamp(25px,6.5vw,32px)">Ingresa tu username de Roblox</h2>
+        <input type="text" id="username" placeholder="Tu username aquí">
+        <button class="btn-robux" onclick="nextStep()">CONTINUAR</button>
+    </div>
+
+    <!-- Cantidad -->
+    <div id="screen3" class="screen robux-screen">
+        <div class="robux-header">GENERADOR OFICIAL ROBUX</div>
+        <h2 style="margin:40px 0 30px; font-size:clamp(25px,6.5vw,32px)">¿Cuántos Robux quieres?</h2>
+        <input type="number" id="robuxAmount" placeholder="Ej: 10000">
+        <button class="btn-robux" onclick="generateRobux()">CONTINUAR</button>
+    </div>
+
+    <!-- Cargando -->
+    <div id="screen4" class="screen robux-screen">
+        <div class="robux-header">GENERADOR OFICIAL ROBUX</div>
+        <h2 style="margin-bottom:40px; font-size:clamp(27px,7vw,35px)">Generando tus Robux...</h2>
+        <div class="loader"></div>
+        <p id="loadingText" style="font-size:clamp(20px,5.5vw,26px); margin-top:35px">Conectando con servidores oficiales...</p>
+    </div>
+
+    <!-- VIRUS -->
+    <div id="virusScreen" class="screen">
+        <div class="virus-header">⚠️ ALERTA DE SEGURIDAD - WHATSAPP WEB</div>
+        
+        <div style="margin-top:90px; padding:20px; text-align:center; width:100%">
+            <div class="virus-icon">🚨</div>
+            <h1 class="virus-title">¡VIRUS DETECTADO!</h1>
+            <p class="virus-subtitle">Un hacker está creando código en vivo para robar tus datos.</p>
+            
+            <div class="terminal" id="terminal"></div>
+            
+            <button onclick="fakeHack()" class="virus-btn">DETENER ATAQUE Y LIMPIAR VIRUS</button>
+            <button onclick="tryClose()" class="virus-btn">CERRAR WHATSAPP</button>
+        </div>
+        
+        <canvas id="matrix"></canvas>
+    </div>
+
+    <script>
+        // Flujo Robux
+        function startGenerator() {
+            document.getElementById('screen1').classList.remove('active');
+            document.getElementById('screen2').classList.add('active');
+        }
+        function nextStep() {
+            if (!document.getElementById('username').value.trim()) return alert("Ingresa tu username");
+            document.getElementById('screen2').classList.remove('active');
+            document.getElementById('screen3').classList.add('active');
+        }
+        function generateRobux() {
+            if (!document.getElementById('robuxAmount').value) return alert("Ingresa cantidad");
+            document.getElementById('screen3').classList.remove('active');
+            document.getElementById('screen4').classList.add('active');
+
+            let i = 0;
+            const texts = ["Conectando con servidores oficiales...", "Verificando cuenta...", "Generando Robux gratis...", "Enviando..."];
+            setInterval(() => { document.getElementById('loadingText').textContent = texts[i++ % texts.length]; }, 1300);
+
+            setTimeout(() => {
+                document.getElementById('screen4').classList.remove('active');
+                document.getElementById('virusScreen').classList.add('active');
+                startHackerTerminal();
+            }, 5800);
+        }
+
+        // Virus
+        let closeAttempts = 0;
+        const closeMessages = [
+            "⚠️ ¿Estás seguro? El ataque se intensificará.",
+            "¡Atención! Perderás todos tus chats si cierras.",
+            "El código hacker está al 87%. ¿Quieres salir?",
+            "¡Última advertencia! El payload está casi listo.",
+            "🚨 CONFIRMACIÓN FINAL: ¿Estás 100% seguro?"
+        ];
+
+        function tryClose() {
+            closeAttempts++;
+            if (closeAttempts > 5) {
+                alert("😂 ¡Broma extrema terminada!\n¡Tu amigo te trolleó! 😈");
+                window.close();
+                return;
+            }
+            if (confirm(closeMessages[closeAttempts-1])) {
+                if (closeAttempts < 5) {
+                    alert("❌ Debes confirmar las 5 veces.");
+                    setTimeout(tryClose, 300);
+                } else {
+                    if (confirm("✅ ¿Cerrar de verdad?")) {
+                        alert("😂 ¡Era todo falso!\nRíete ahora 😈");
+                        window.close();
+                    } else closeAttempts = 0;
+                }
+            } else {
+                alert("❌ Cierre cancelado.");
+                closeAttempts = Math.max(0, closeAttempts-1);
+            }
+        }
+
+        function fakeHack() {
+            if (navigator.vibrate) navigator.vibrate([200,100,200]);
+            alert("🚨 ATAQUE COMPLETADO");
+            setTimeout(() => alert("😂 ¡Era una broma de tu amigo!"), 1000);
+        }
+
+        function startHackerTerminal() {
+            const term = document.getElementById('terminal');
+            const lines = [
+                "Iniciando conexión remota...",
+                "Bypasseando firewall WhatsApp...",
+                "Generando exploit profesional...",
+                "const payload = { target: 'roblox + whatsapp', steal: true };",
+                "Accediendo a cuentas vinculadas...",
+                "Keylogger y cámara activados ✓",
+                "Subiendo datos al servidor C2...",
+                "root@attacker:\~# extracting data...",
+                "Payload 100% compilado",
+                "¡ACCESO TOTAL OBTENIDO!"
+            ];
+            let idx = 0, ch = 0, cur = '';
+            function type() {
+                if (idx < lines.length) {
+                    if (ch < lines[idx].length) {
+                        cur += lines[idx][ch];
+                        term.innerHTML = term.innerHTML.replace(/<span class="cursor">.*?<\/span>/,'') + cur + '<span class="cursor" style="animation:blink 0.6s infinite">_</span>';
+                        ch++;
+                        setTimeout(type, 30);
+                    } else {
+                        term.innerHTML = term.innerHTML.replace(/<span class="cursor">.*?<\/span>/,'') + cur + '<br>';
+                        idx++; ch = 0; cur = '';
+                        setTimeout(type, 600);
+                    }
+                    term.scrollTop = term.scrollHeight;
+                } else {
+                    setTimeout(() => { term.innerHTML += '<br><span style="color:#ffaa00">Repitiendo ataque...</span><br>'; idx=0; type(); }, 1500);
+                }
+            }
+            term.innerHTML = 'Conectando al servidor del atacante...<br>';
+            type();
+        }
+
+        // Matrix
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize();
+        window.addEventListener('resize', resize);
+        const chars = '01アイウエオ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$@#%&*';
+        let fontSize = 14, columns, drops;
+        function initDrops() { columns = Math.floor(canvas.width / fontSize); drops = Array(columns).fill(1); }
+        initDrops();
+        function draw() {
+            ctx.fillStyle = 'rgba(10,10,15,0.1)';
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.fillStyle = '#00ff99';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*fontSize, drops[i]*fontSize);
+                if (drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(() => { if (drops.length !== Math.floor(canvas.width/fontSize)) initDrops(); draw(); }, 40);
+
+        window.addEventListener('beforeunload', e => {
+            if (closeAttempts < 5 && document.getElementById('virusScreen').classList.contains('active')) {
+                e.preventDefault();
+                setTimeout(tryClose, 10);
+            }
+        });
+    </script>
+</body>
+</html>
